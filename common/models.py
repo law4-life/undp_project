@@ -68,7 +68,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.username
 
-   """ @property
+    """ @property
     def get_app_name(self):
         if self.company:
             return self.company.sub_domain + "." + settings.APPLICATION_NAME
@@ -106,7 +106,7 @@ class Address(models.Model):
         _("Post/Zip-code"), max_length=64, blank=True, null=True
     )
     country = models.CharField(
-        max_length=3, choices=COUNTRIES, blank=True, null=True)
+        max_length=20, choices=COUNTRIES, blank=True, null=True)
 
     def __str__(self):
         return self.city if self.city else ""
@@ -144,19 +144,27 @@ class Address(models.Model):
 
 
 class Comment(models.Model):
-    case = models.ForeignKey(
+    account = models.ForeignKey(
+    "dbms.Account",
+    blank=True,
+    null=True,
+    related_name="account_comments",
+    on_delete=models.CASCADE,
+)
+
+    """case = models.ForeignKey(
         "cases.Case",
         blank=True,
         null=True,
         related_name="cases",
         on_delete=models.CASCADE,
-    )
+    )"""
     comment = models.CharField(max_length=255)
     commented_on = models.DateTimeField(auto_now_add=True)
     commented_by = models.ForeignKey(
         User, on_delete=models.CASCADE, blank=True, null=True
     )
-    account = models.ForeignKey(
+    """account = models.ForeignKey(
         "accounts.Account",
         blank=True,
         null=True,
@@ -176,7 +184,7 @@ class Comment(models.Model):
         null=True,
         related_name="opportunity_comments",
         on_delete=models.CASCADE,
-    )
+    )"""
     contact = models.ForeignKey(
         "contacts.Contact",
         blank=True,
@@ -192,7 +200,7 @@ class Comment(models.Model):
         on_delete=models.CASCADE,
     )
 
-    task = models.ForeignKey(
+    """task = models.ForeignKey(
         "tasks.Task",
         blank=True,
         null=True,
@@ -214,7 +222,7 @@ class Comment(models.Model):
         null=True,
         related_name="events_comments",
         on_delete=models.CASCADE,
-    )
+    )"""
 
     def get_files(self):
         return Comment_Files.objects.filter(comment_id=self)
@@ -245,15 +253,15 @@ class Attachments(models.Model):
     created_on = models.DateTimeField(_("Created on"), auto_now_add=True)
     attachment = models.FileField(
         max_length=1001, upload_to="attachments/%Y/%m/")
-    lead = models.ForeignKey(
+    """lead = models.ForeignKey(
         "leads.Lead",
         null=True,
         blank=True,
         related_name="lead_attachment",
         on_delete=models.CASCADE,
-    )
+    )"""
     account = models.ForeignKey(
-        "accounts.Account",
+        "dbms.Account",
         null=True,
         blank=True,
         related_name="account_attachment",
@@ -266,7 +274,7 @@ class Attachments(models.Model):
         blank=True,
         null=True,
     )
-    opportunity = models.ForeignKey(
+    """ opportunity = models.ForeignKey(
         "opportunity.Opportunity",
         blank=True,
         null=True,
@@ -302,7 +310,7 @@ class Attachments(models.Model):
         null=True,
         related_name="events_attachment",
         on_delete=models.CASCADE,
-    )
+    ) """
 
     def file_type(self):
         name_ext_list = self.attachment.url.split(".")
@@ -358,9 +366,9 @@ class Document(models.Model):
     shared_to = models.ManyToManyField(User, related_name="document_shared_to")
     teams = models.ManyToManyField(
         "teams.Teams", related_name="document_teams")
-    company = models.ForeignKey(
+    """company = models.ForeignKey(
         Company, on_delete=models.SET_NULL, null=True, blank=True
-    )
+    )"""
 
     class Meta:
         ordering = ("-created_on",)
@@ -423,9 +431,9 @@ class APISettings(models.Model):
     title = models.CharField(max_length=1000)
     apikey = models.CharField(max_length=16, blank=True)
     website = models.URLField(max_length=255, default="")
-    lead_assigned_to = models.ManyToManyField(
-        User, related_name="lead_assignee_users")
-    tags = models.ManyToManyField("accounts.Tags", blank=True)
+    #lead_assigned_to = models.ManyToManyField(
+    #    User, related_name="lead_assignee_users")
+    tags = models.ManyToManyField("dbms.Tags", blank=True)
     created_by = models.ForeignKey(
         User, related_name="settings_created_by", on_delete=models.SET_NULL, null=True
     )

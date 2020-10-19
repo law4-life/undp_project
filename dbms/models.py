@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import pgettext_lazy
 from django.utils.translation import ugettext_lazy as _
 
-from common.models import User, Company
+from common.models import User 
 from common.utils import INDCHOICES, TOWNS, DISTRICTS, TYPECHOICES,COUNTRIES
 from phonenumber_field.modelfields import PhoneNumberField
 from django.utils.text import slugify
@@ -54,7 +54,7 @@ class Account(models.Model):
         _("Post/Zip-code"), max_length=64, blank=True, null=True
     )
     billing_country = models.CharField(
-        max_length=3, choices=COUNTRIES, blank=True, null=True
+        max_length=20, choices=COUNTRIES, blank=True, null=True
     )
     website = models.URLField(_("Website"), blank=True, null=True)
     description = models.TextField(blank=True, null=True)
@@ -67,9 +67,9 @@ class Account(models.Model):
     status = models.CharField(
         choices=ACCOUNT_STATUS_CHOICE, max_length=64, default="open"
     )
-    lead = models.ForeignKey(
-        "leads.Lead", related_name="account_leads", on_delete=models.SET_NULL, null=True
-    )
+    #lead = models.ForeignKey(
+    #    "leads.Lead", related_name="account_leads", on_delete=models.SET_NULL, null=True
+    #)
     contact_name = models.CharField(
         pgettext_lazy("Name of Contact", "Contact Name"), max_length=120
     )
@@ -80,9 +80,9 @@ class Account(models.Model):
         User, related_name="account_assigned_users")
     teams = models.ManyToManyField(Teams, related_name="account_teams")
 
-    company = models.ForeignKey(
-        Company, on_delete=models.SET_NULL, null=True, blank=True
-    )
+    #company = models.ForeignKey(
+    #    Company, on_delete=models.SET_NULL, null=True, blank=True
+    #)
 
     def __str__(self):
         return self.name

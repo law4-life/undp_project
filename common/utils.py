@@ -22,16 +22,16 @@ ROLES = (
     ("USER", "USER"),
 )
 
-LEAD_STATUS = (
+"""LEAD_STATUS = (
     ("assigned", "Assigned"),
     ("in process", "In Process"),
     ("converted", "Converted"),
     ("recycled", "Recycled"),
     ("closed", "Closed"),
-)
+)"""
 
 
-LEAD_SOURCE = (
+"""LEAD_SOURCE = (
     ("call", "Call"),
     ("email", "Email"),
     ("existing customer", "Existing Customer"),
@@ -39,7 +39,7 @@ LEAD_SOURCE = (
     ("public relations", "Public Relations"),
     ("campaign", "Campaign"),
     ("other", "Other"),
-)
+)"""
 
 STATUS_CHOICE = (
     ("New", "New"),
@@ -57,22 +57,20 @@ PRIORITY_CHOICE = (
     ("Urgent", "Urgent"),
 )
 
-CASE_TYPE = (("Question", "Question"), ("Incident",
-                                        "Incident"), ("Problem", "Problem"))
+"""CASE_TYPE = (("Question", "Question"), ("Incident",
+                                        "Incident"), ("Problem", "Problem"))"""
 
 STAGES = (
-    ("QUALIFICATION", "QUALIFICATION"),
-    ("NEEDS ANALYSIS", "NEEDS ANALYSIS"),
-    ("VALUE PROPOSITION", "VALUE PROPOSITION"),
-    ("ID.DECISION MAKERS", "ID.DECISION MAKERS"),
-    ("PERCEPTION ANALYSIS", "PERCEPTION ANALYSIS"),
-    ("PROPOSAL/PRICE QUOTE", "PROPOSAL/PRICE QUOTE"),
-    ("NEGOTIATION/REVIEW", "NEGOTIATION/REVIEW"),
-    ("CLOSED WON", "CLOSED WON"),
-    ("CLOSED LOST", "CLOSED LOST"),
+    ("STAGE ONE", "STAGE ONE"),
+    ("STAGE TWO", "STAGE TWO"),
+    ("STAGE THREE", "STAGE THREE"),
+    ("STAGE FOUR", "STAGE FOUR"),
+    ("STAGE FIVE", "STAGE FIVE"),
+    ("STAGE SIX", "STAGE SIX"),
+    
 )
 
-SOURCES = (
+"""SOURCES = (
     ("NONE", "NONE"),
     ("CALL", "CALL"),
     ("EMAIL", " EMAIL"),
@@ -82,10 +80,11 @@ SOURCES = (
     ("CAMPAIGN", "CAMPAIGN"),
     ("WEBSITE", "WEBSITE"),
     ("OTHER", "OTHER"),
-)
+)"""
 
-EVENT_PARENT_TYPE = ((10, "Account"), (13, "Lead"),
-                     (14, "Opportunity"), (11, "Case"))
+EVENT_PARENT_TYPE = ((10, "Account"), #(13, "Lead"),
+                     (14, "Opportunity"), #(11, "Case")
+                     )
 
 EVENT_STATUS = (
     ("Planned", "Planned"),
@@ -126,7 +125,9 @@ TOWNS = (
     ("Serowe", "Serowe"),
     ("Selibe Phikwe", "Selibe Phikwe"),
     ("Maun", "Maun"),
-    ("Kanye", "Kanye"),
+)
+
+"""("Kanye", "Kanye"),
     ("Mahalapye", "Mahalapye"),
     ("Mogoditshane", "Mogoditshane"),
     ("Mochudi", "Mochudi"),
@@ -150,7 +151,7 @@ TOWNS = (
     ("Shakawe", "Shakawe"),
     ("Lentsweletau", "Lentsweletau"),
     ("Molapowabojang", "Molapowabojang"),
-    ("Tshabong", "Tshabong)",
+    ("Tshabong", "Tshabong"),
     ("Sefophe", "Sefophe"),
     ("Sehithwa", "Sehithwa"),
     ("Nata", "Nata"),
@@ -197,7 +198,7 @@ TOWNS = (
     ("Manyana","Manyana"),
     ("Toteng","Toteng"),
     ("Shorobe","Shorobe"),
-     ("Mandunyane", "Mandunyane"),
+    ("Mandunyane", "Mandunyane"),
     ("Thabala","Thabala"),
     ("Lecheng","Lecheng"),
     ("Shashe-Mooke", "Shashe-Mooke"),
@@ -211,10 +212,16 @@ TOWNS = (
     ("Chadibe","Chadibe"),
     ("Seronga","Seronga"),
     ("Mookane","Mookane"),
-))
+)"""
 
-COUNTRIES =(
-    ("GB", _("United Kingdom")),
+
+COUNTRIES = (
+    ("Botswana", "Botswana"),
+  
+)   
+
+"""COUNTRIES =(
+    ("GB", "United Kingdom")),
     ("AF", _("Afghanistan")),
     ("AX", _("Aland Islands")),
     ("AL", _("Albania")),
@@ -460,7 +467,7 @@ COUNTRIES =(
     ("YE", _("Yemen")),
     ("ZM", _("Zambia")),
     ("ZW", _("Zimbabwe")),
-)
+)"""
 
 CURRENCY_CODES=(
     ("AED", _("AED, Dirham")),

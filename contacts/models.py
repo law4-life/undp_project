@@ -2,7 +2,7 @@ import arrow
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from common.models import Address, User, Company
+from common.models import Address, User
 from phonenumber_field.modelfields import PhoneNumberField
 from teams.models import Teams
 
@@ -29,9 +29,9 @@ class Contact(models.Model):
     is_active = models.BooleanField(default=False)
     teams = models.ManyToManyField(Teams, related_name="contact_teams")
 
-    company = models.ForeignKey(
-        Company, on_delete=models.SET_NULL, null=True, blank=True
-    )
+    #company = models.ForeignKey(
+    #    Company, on_delete=models.SET_NULL, null=True, blank=True
+   # )
 
     def __str__(self):
         return self.first_name
